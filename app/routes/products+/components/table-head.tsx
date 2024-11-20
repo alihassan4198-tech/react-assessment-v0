@@ -1,12 +1,12 @@
-import {useTranslation} from 'react-i18next';
+import { useTranslation } from 'react-i18next';
 
-import {Box, TableCell, TableHead, TableRow, Typography} from '@mui/material';
+import { Box, TableCell, TableHead, TableRow, Typography } from '@mui/material';
 
 //
 //
 
 export const ProductsTableHead = () => {
-  const {t} = useTranslation(['common', 'products']);
+  const { t } = useTranslation(['common', 'products']);
 
   return (
     <TableHead>

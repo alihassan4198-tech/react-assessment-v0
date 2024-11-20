@@ -1,39 +1,38 @@
-import {useTranslation} from 'react-i18next';
-import {useSnackbar} from 'notistack';
+import { useTranslation } from 'react-i18next';
+import { useSnackbar } from 'notistack';
 
-import {Paper, Table, TableBody, TableContainer} from '@mui/material';
+import { useMediaQuery, Paper, Table, TableBody, TableContainer } from '@mui/material';
 
-import {useMutationProductsDelete} from '~/services/products';
+import { useMutationProductsDelete } from '~/services/products';
 
-import {TableRowEmpty} from '~/global/components/table-row-empty';
+import { TableRowEmpty } from '~/global/components/table-row-empty';
 
-import {ApiProduct} from '~/api-client/types';
+import { ApiProduct } from '~/api-client/types';
 
-import {ProductsTableHead} from './table-head';
-import {ProductsTableRow} from './table-row';
-import {ProductsTableRowSkeleton} from './table-row-skeleton';
+import { ProductsTableHead } from './table-head';
+import { ProductsTableRow } from './table-row';
+import { ProductsMobileView } from './product-mobile-view'
+import { ProductsTableRowSkeleton } from './table-row-skeleton';
 
-//
-//
 
-export const ProductsTable = ({data, isLoading}: {data?: ApiProduct[]; isLoading: boolean}) => {
-  const {t} = useTranslation(['common']);
-  const {enqueueSnackbar} = useSnackbar();
+export const ProductsTable = ({ data, isLoading }: { data?: ApiProduct[]; isLoading: boolean }) => {
+  const { t } = useTranslation(['common']);
+  const { enqueueSnackbar } = useSnackbar();
   const deleteItem = useMutationProductsDelete();
 
-  //
+  const isMobile = useMediaQuery('(max-width:768px)');
 
   const doDeleteItem = (item: ApiProduct) => {
-    if (!window.confirm(t('common:deleteConfirm', {item: item.title.en || item.title.ar}))) return;
+    if (!window.confirm(t('common:deleteConfirm', { item: item.title.en || item.title.ar }))) return;
 
     deleteItem.mutate(
-      {id: item.productId},
+      { id: item.productId },
       {
         onSuccess: async result => {
-          result?.meta?.message && enqueueSnackbar(result?.meta?.message, {variant: 'success'});
+          result?.meta?.message && enqueueSnackbar(result?.meta?.message, { variant: 'success' });
         },
         onError: err => {
-          enqueueSnackbar(err?.message || 'unknown error', {variant: 'error'});
+          enqueueSnackbar(err?.message || 'unknown error', { variant: 'error' });
         },
       },
     );
@@ -42,9 +41,12 @@ export const ProductsTable = ({data, isLoading}: {data?: ApiProduct[]; isLoading
   //
   //
 
-  return (
+
+  const layout = isMobile ? (
+    <ProductsMobileView data={data || []} onDelete={doDeleteItem} />
+  ) : (
     <TableContainer component={Paper}>
-      <Table sx={{minWidth: 650}}>
+      <Table sx={{ minWidth: 650 }}>
         <ProductsTableHead />
         <TableBody>
           {isLoading ? (
@@ -60,4 +62,5 @@ export const ProductsTable = ({data, isLoading}: {data?: ApiProduct[]; isLoading
       </Table>
     </TableContainer>
   );
+  return layout
 };
