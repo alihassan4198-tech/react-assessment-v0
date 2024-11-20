@@ -1,26 +1,25 @@
-import {useTranslation} from 'react-i18next';
-import {formatRelative} from 'date-fns';
+import { useTranslation } from 'react-i18next';
+import { formatRelative } from 'date-fns';
 
-import {Box, Button, Stack, TableCell, TableRow, Typography} from '@mui/material';
-import {DeleteOutline} from '@mui/icons-material';
+import { Box, Button, Stack, TableCell, TableRow, Typography } from '@mui/material';
+import { DeleteOutline } from '@mui/icons-material';
 
-import {AppButton} from '~/global/components/app-button';
+import { AppButton } from '~/global/components/app-button';
 
-import {ApiProduct} from '~/api-client/types';
+import { ApiProduct } from '~/api-client/types';
 
 //
 //
 
-type ProductsTableRowProps = {row: ApiProduct; doDeleteItem: (item: ApiProduct) => void};
+type ProductsTableRowProps = { row: ApiProduct; doDeleteItem: (item: ApiProduct) => void };
 
 export const ProductsTableRow: React.FC<ProductsTableRowProps> = ({
   row,
   doDeleteItem,
 }: ProductsTableRowProps) => {
-  const {t} = useTranslation(['products', 'common']);
-
+  const { t } = useTranslation(['products', 'common']);
   return (
-    <TableRow sx={{'&:last-child td, &:last-child th': {border: 0}}}>
+    <TableRow sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
       <TableCell component="th" scope="row">
         <Box
           sx={{

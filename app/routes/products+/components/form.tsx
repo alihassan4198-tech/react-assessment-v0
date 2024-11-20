@@ -1,45 +1,45 @@
-import {useTranslation} from 'react-i18next';
+import { useTranslation } from 'react-i18next';
 
-import {Box, Grid2, InputAdornment, MenuItem} from '@mui/material';
+import { Box, Grid2, InputAdornment, MenuItem } from '@mui/material';
 
-import {useQueryCategoriesList} from '~/services/categories';
+import { useQueryCategoriesList } from '~/services/categories';
 
-import {AppInput} from '~/global/components/app-input';
-import {AppInputSwitch} from '~/global/components/app-input-switch';
+import { AppInput } from '~/global/components/app-input';
+import { AppInputSwitch } from '~/global/components/app-input-switch';
 
 //
 //
 
 export const ProductsForm = () => {
-  const {t} = useTranslation(['common', 'products']);
+  const { t } = useTranslation(['common', 'products']);
   const categories = useQueryCategoriesList();
 
   return (
     <>
-      <Grid2 container spacing={2} direction={{xs: 'column', sm: 'row'}}>
+      <Grid2 container spacing={2} direction={{ xs: 'column', sm: 'row' }}>
         <AppInput
           name="title.ar"
           label={t('common:title') + ' ' + t('common:lang.ar')}
           variant="filled"
-          sx={{flex: 1}}
+          sx={{ flex: 1 }}
         />
 
         <AppInput
           name="title.en"
           label={t('common:title') + ' ' + t('common:lang.en')}
           variant="filled"
-          sx={{flex: 1}}
+          sx={{ flex: 1 }}
         />
       </Grid2>
 
-      <Grid2 container spacing={2} direction={{xs: 'column', md: 'row'}}>
+      <Grid2 container spacing={2} direction={{ xs: 'column', md: 'row' }}>
         <AppInput
           name="description.ar"
           label={t('common:description') + ' ' + t('common:lang.ar')}
           variant="filled"
           multiline
           rows={4}
-          sx={{flex: 1}}
+          sx={{ flex: 1 }}
         />
 
         <AppInput
@@ -48,7 +48,7 @@ export const ProductsForm = () => {
           variant="filled"
           multiline
           rows={4}
-          sx={{flex: 1}}
+          sx={{ flex: 1 }}
         />
       </Grid2>
 
@@ -56,7 +56,7 @@ export const ProductsForm = () => {
         name="categoryId"
         label={t('products:category')}
         variant="filled"
-        sx={{flex: 1}}
+        sx={{ flex: 1 }}
         select
       >
         {!categories.isFetched ? (
@@ -72,26 +72,26 @@ export const ProductsForm = () => {
         )}
       </AppInput>
 
-      <Grid2 container spacing={2} direction={{xs: 'column', sm: 'row'}} columns={12}>
-        <Grid2 size={{xs: 12, sm: 6}} spacing={2} container>
-          <AppInput name="sku" label={t('products:sku')} variant="filled" sx={{flex: 1}} />
+      <Grid2 container spacing={2} direction={{ xs: 'column', sm: 'row' }} columns={12}>
+        <Grid2 size={{ xs: 12, sm: 6 }} spacing={2} container>
+          <AppInput name="sku" label={t('products:sku')} variant="filled" sx={{ flex: 1 }} />
 
           <AppInput
             name="quantity"
             label={t('products:quantity')}
             variant="filled"
             type="tel"
-            sx={{flex: 1}}
+            sx={{ flex: 1 }}
           />
         </Grid2>
 
-        <Grid2 size={{xs: 12, sm: 6}} spacing={2} container>
+        <Grid2 size={{ xs: 12, sm: 6 }} spacing={2} container>
           <AppInput
             name="price"
             label={t('products:price')}
             variant="filled"
             type="tel"
-            sx={{flex: 1}}
+            sx={{ flex: 1 }}
             slotProps={{
               input: {
                 startAdornment: <InputAdornment position="start">$</InputAdornment>,
@@ -104,7 +104,7 @@ export const ProductsForm = () => {
             label={t('products:priceSale')}
             variant="filled"
             type="tel"
-            sx={{flex: 1}}
+            sx={{ flex: 1 }}
             slotProps={{
               input: {
                 startAdornment: <InputAdornment position="start">$</InputAdornment>,

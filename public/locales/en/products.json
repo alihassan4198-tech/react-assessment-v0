@@ -7,5 +7,7 @@
 	"category": "Category",
 	"quantity": "Quantity",
 	"price": "Price",
+	"productTitle": "Title",
+	"status": "Status",
 	"priceSale": "Sale Price"
 }

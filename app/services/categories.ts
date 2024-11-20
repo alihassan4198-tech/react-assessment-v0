@@ -1,4 +1,4 @@
-import {createMutation, createQuery} from 'react-query-kit';
+import { createMutation, createQuery } from 'react-query-kit';
 
 import {
   apiCategoriesCreate,
@@ -18,7 +18,7 @@ import {
   apiCategoriesUpdateResponse,
 } from '~/api-client/categories';
 
-import {queryClient} from './client';
+import { queryClient } from './client';
 
 //
 //
@@ -26,7 +26,7 @@ import {queryClient} from './client';
 const key = 'categories';
 const refetchListNoCache = async () =>
   queryClient.fetchQuery({
-    ...useQueryCategoriesList.getFetchOptions({options: {cache: 'no-cache'}}),
+    ...useQueryCategoriesList.getFetchOptions({ options: { cache: 'no-cache' } }),
     queryKey: [key],
   });
 
